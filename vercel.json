@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/accept-invite", "destination": "/app/accept-invite", "permanent": false },
+    { "source": "/update-password", "destination": "/app/update-password", "permanent": false },
+    { "source": "/reset-password", "destination": "/app/reset-password", "permanent": false },
+    { "source": "/login", "destination": "/app/login", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/app", "destination": "https://leadstart-ebon.vercel.app/app" },
     { "source": "/app/:path*", "destination": "https://leadstart-ebon.vercel.app/app/:path*" }
