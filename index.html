@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2e37fe" />
+  <title>LeadStart — Outbound Lead Generation for B2B Companies</title>
+  <meta name="description" content="LeadStart books qualified intro calls with your target buyers. Custom cold email, verified lists, territory exclusivity, money-back guarantee." />
+  <meta name="author" content="LeadStart" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LeadStart — Outbound Lead Generation for B2B Companies" />
+  <meta property="og:description" content="Simplified lead gen & nurture solution. Book qualified intro calls with commercial decision-makers — no ads, no spam blasts, just targeted outbound." />
+  <meta property="og:url" content="https://leadstart.io/" />
+  <meta property="og:image" content="/assets/img/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/img/leadstart-logo.png" />
+
+  <!-- Styles (load order matters) -->
+  <link rel="stylesheet" href="/assets/css/tokens.css" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/layout.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/pages.css" />
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- =============== HEADER =============== -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav">
+      <a href="/" class="logo" aria-label="LeadStart home">
+        <span class="logo-mark" aria-hidden="true">
+          <img src="/assets/img/leadstart-logo.png" alt="" />
+        </span>
+        <span>LeadStart</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/services.html">How It Works</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="/contact.html" class="btn btn-primary btn-sm nav-cta">
+        Book Intro Call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-drawer-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/services.html">How It Works</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/contact.html" class="btn btn-primary">
+      Book Intro Call
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <main id="main">
+
+    <!-- =============== HERO =============== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-copy" data-reveal>
+            <span class="pill-glass mb-24">
+              <span class="dot"></span>
+              Built for B2B companies
+            </span>
+            <h1>
+              The #1 most effective <span class="text-grad">outbound</span> for B2B companies.
+            </h1>
+            <p class="lead">
+              Simplified lead generation and nurture. We book qualified intro calls with your target buyers — so you can focus on closing, not prospecting.
+            </p>
+            <div class="hero-ctas">
+              <a href="/contact.html" class="btn btn-primary btn-lg">
+                Book Intro Call
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <a href="/services.html" class="btn btn-secondary btn-lg">
+                See How It Works
+              </a>
+            </div>
+            <div class="hero-trust">
+              <strong class="text-primary">Territory exclusivity</strong>
+              <span class="divider-dot"></span>
+              <strong class="text-primary">Money-back guarantee</strong>
+              <span class="divider-dot"></span>
+              <strong class="text-primary">Month-to-month</strong>
+            </div>
+          </div>
+
+          <!-- CSS-mocked email thread visual -->
+          <div class="hero-visual" data-reveal data-reveal-delay="0.15s" aria-hidden="true">
+            <div class="mock-inbox">
+              <div class="mock-inbox-header">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="label">Daniel's Inbox · Today</span>
+              </div>
+
+              <div class="mock-thread">
+                <div class="mock-avatar">JP</div>
+                <div class="mock-thread-body">
+                  <div class="mock-thread-meta">
+                    <strong>John P.</strong>
+                    <span>VP Operations · 9:14 AM</span>
+                  </div>
+                  <div class="mock-thread-subject">Quote request — Downtown office (22k sqft)</div>
+                  <div class="mock-thread-snippet">Happy to connect next week. Can you send availability…</div>
+                </div>
+                <span class="mock-thread-status reply">Reply</span>
+              </div>
+
+              <div class="mock-thread highlight">
+                <div class="mock-avatar alt-2">MR</div>
+                <div class="mock-thread-body">
+                  <div class="mock-thread-meta">
+                    <strong>Maria R.</strong>
+                    <span>Property Manager · 10:42 AM</span>
+                  </div>
+                  <div class="mock-thread-subject">Re: Interested in bringing your team in</div>
+                  <div class="mock-thread-snippet">We're open to switching. Walkthrough Thursday at 2pm?</div>
+                </div>
+                <span class="mock-thread-status booked">Booked</span>
+              </div>
+
+              <div class="mock-thread">
+                <div class="mock-avatar alt">DK</div>
+                <div class="mock-thread-body">
+                  <div class="mock-thread-meta">
+                    <strong>Derek K.</strong>
+                    <span>Office Mgr · 11:08 AM</span>
+                  </div>
+                  <div class="mock-thread-subject">Interested — send a proposal please</div>
+                  <div class="mock-thread-snippet">Our current provider isn't meeting expectations…</div>
+                </div>
+                <span class="mock-thread-status sent">Sent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============== 3-PHASE PROCESS =============== -->
+    <section class="section process section-alt" id="process">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow">How it works</span>
+          <h2>Three phases. Zero guesswork.</h2>
+          <p>Setup, outreach, and nurture — engineered for B2B outbound. You focus on closing business. We handle everything else.</p>
+        </div>
+
+        <div class="process-grid">
+
+          <article class="card process-card" data-reveal>
+            <div class="step-number">1</div>
+            <h3>Setup</h3>
+            <p>We configure sending infrastructure, build your verified prospect list, and write custom introduction copy tuned to your service mix and market.</p>
+            <ul class="check-list">
+              <li>Dedicated sending domains &amp; inbox warming</li>
+              <li>Double-verified list — no bounces, no spam traps</li>
+              <li>Custom copy written for your voice</li>
+            </ul>
+          </article>
+
+          <article class="card process-card" data-reveal data-reveal-delay="0.1s">
+            <div class="step-number">2</div>
+            <h3>Outreach</h3>
+            <p>Multi-step sequences reach decision-makers across your exclusive territory. Every reply is routed to you in real time with the full context you need to close.</p>
+            <ul class="check-list">
+              <li>Targeted decision makers in your ideal accounts</li>
+              <li>Personalized — no spam blasts, no templates</li>
+              <li>Replies forwarded to your inbox instantly</li>
+            </ul>
+          </article>
+
+          <article class="card process-card" data-reveal data-reveal-delay="0.2s">
+            <div class="step-number">3</div>
+            <h3>Nurture</h3>
+            <p>Interested-but-not-ready prospects get long-term follow-up so you stay top of mind when they're ready to switch providers — which is when they switch, not when we email.</p>
+            <ul class="check-list">
+              <li>Automated follow-up at the right cadence</li>
+              <li>Warm handoffs when leads re-engage</li>
+              <li>List ownership — every contact is yours</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============== FEATURES =============== -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow">Why LeadStart</span>
+          <h2>Built specifically for B2B outbound.</h2>
+          <p>Everything that matters for B2B outbound — territory protection, verified data, human-written copy, and a guarantee that actually has teeth.</p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="card card-hover feature-card" data-reveal>
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h4>Territory exclusivity</h4>
+            <p>We work with one client per territory per vertical. Your leads stay yours — no overlapping outreach from direct competitors.</p>
+          </article>
+
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.05s">
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h4>Verified lead lists</h4>
+            <p>Every email is double-verified before it sends. Fresh lists pulled for your market — nothing recycled, no bounces tanking your domain reputation.</p>
+          </article>
+
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.1s">
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h4>Custom copy, not templates</h4>
+            <p>Your copy is written for your service mix, your market, your voice. No spammy template blasts — every email reads like it came from a person.</p>
+          </article>
+
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.15s">
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h4>Real-time routing</h4>
+            <p>Replies hit your inbox the moment they land, with the full thread and context attached. You respond while the lead is still warm — not a week later.</p>
+          </article>
+
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.2s">
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <h4>Money-back guarantee</h4>
+            <p>If we don't hit our agreed lead target, we refund 50% of your setup fee and work free until we do. Skin in the game — on both sides.</p>
+          </article>
+
+          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.25s">
+            <div class="icon-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h4>Done-for-you</h4>
+            <p>You don't touch the tech. We handle domains, inboxes, sequences, deliverability, follow-ups — everything. Your only job is replying to warm leads.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============== PRICING TEASER =============== -->
+    <section class="section section-alt" id="pricing-teaser">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow">Pricing</span>
+          <h2>Straightforward pricing. Backed by a real guarantee.</h2>
+          <p>Pick the volume that matches your capacity. One-time setup fee scales with your market size. Month-to-month — cancel whenever.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+          <article class="price-card" data-reveal>
+            <span class="tier">Starter</span>
+            <div class="price">$500<span class="suffix">/ month</span></div>
+            <div class="leads-label">5–10 qualified leads / mo</div>
+            <ul>
+              <li>Exclusive territory</li>
+              <li>Verified prospect lists</li>
+              <li>Custom outreach copy</li>
+              <li>Automated follow-up nurture</li>
+              <li>Real-time reply routing</li>
+            </ul>
+            <a href="/contact.html" class="btn btn-secondary">Book Intro Call</a>
+          </article>
+
+          <article class="price-card featured" data-reveal data-reveal-delay="0.1s">
+            <span class="badge badge-primary featured-badge">Most Popular</span>
+            <span class="tier">Growth</span>
+            <div class="price">$950<span class="suffix">/ month</span></div>
+            <div class="leads-label">10–15 qualified leads / mo</div>
+            <ul>
+              <li>Everything in Starter</li>
+              <li>Larger sending volume</li>
+              <li>Expanded prospect list refresh</li>
+              <li>Priority reply routing</li>
+              <li>Monthly strategy check-in</li>
+            </ul>
+            <a href="/contact.html" class="btn btn-primary">Book Intro Call</a>
+          </article>
+
+          <article class="price-card" data-reveal data-reveal-delay="0.2s">
+            <span class="tier">Scale</span>
+            <div class="price">$1,500<span class="suffix">/ month</span></div>
+            <div class="leads-label">20+ qualified leads / mo</div>
+            <ul>
+              <li>Everything in Growth</li>
+              <li>Multi-sender infrastructure</li>
+              <li>Multiple market segments</li>
+              <li>Weekly performance reporting</li>
+              <li>Direct strategist access</li>
+            </ul>
+            <a href="/contact.html" class="btn btn-secondary">Book Intro Call</a>
+          </article>
+
+        </div>
+
+        <div class="guarantee-ribbon" data-reveal>
+          <span class="shield" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <div>
+            <strong>Money-back guarantee.</strong> If we don't hit your agreed lead target, we refund 50% of your setup fee and work free until we do. + one-time setup fee billed separately, scaled to your market size.
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============== FAQ =============== -->
+    <section class="section" id="faq">
+      <div class="container-narrow">
+        <div class="section-header" data-reveal>
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions we hear most.</h2>
+          <p>Straight answers on lead quality, guarantees, territory, and what's actually happening behind the scenes.</p>
+        </div>
+
+        <div class="faq-list" data-accordion-group>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              How quickly will I see results?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>Setup and inbox warming takes the first two weeks. Sends begin in week 3 at a conservative volume and ramp up over the first month. Most clients see their first booked intro calls between weeks 3 and 5, with volume increasing through month two as the full sequence rolls out.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              What makes your lists different from ones I've bought before?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>Recycled lists get everyone nowhere. Ours are pulled fresh for your exact market and role targets, then double-verified before a single send. You own every contact outright — nothing is resold, and nothing overlaps with another client's outreach.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              What happens if I don't hit my lead target?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>We refund 50% of your setup fee and keep working free until you hit the agreed target. We don't grow if our clients don't grow — the guarantee forces us to pick markets and service fits we can actually deliver on.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              How is territory exclusivity enforced?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>We sign one client per territory per vertical. Your prospect list is carved from that market and reserved for you — no one else we work with is emailing your prospects, period. If a direct competitor approaches us for the same territory, we decline.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              Do I need to do anything technical?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>No. We handle domains, inbox configuration, deliverability, sequence setup, warming, and follow-ups. Your only job is replying to interested leads — which we route to your main inbox in real time.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              What does the one-time setup fee cover?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>Domain and inbox setup, deliverability warming, custom copy development, initial prospect list build, and verification. The fee scales with how large your addressable market is — the bigger your territory, the more contacts we validate up front. We price it transparently on your intro call.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              Can I cancel whenever?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>Yes. Month-to-month. No annual contracts. If the campaign isn't producing, we'd rather refund you and part ways than have you locked in.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" data-accordion>
+            <summary>
+              Who is actually doing the work?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </summary>
+            <div class="faq-body">
+              <p>A small, direct team — no outsourcing, no offshore content mills. Daniel runs strategy and client calls. Copy and list builds are handled in-house by people who've worked on B2B outbound specifically.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============== FINAL CTA BAND =============== -->
+    <section class="cta-band">
+      <div class="container">
+        <h2 data-reveal>Ready to fill your pipeline with qualified B2B leads?</h2>
+        <p data-reveal data-reveal-delay="0.1s">Book a 20-minute intro call. We'll walk you through your territory, your numbers, and your guaranteed lead target.</p>
+        <div class="row" data-reveal data-reveal-delay="0.2s">
+          <a href="/contact.html" class="btn btn-on-dark btn-lg">
+            Book Intro Call
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+14252869732" class="btn btn-ghost-on-dark btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call: 425-286-9732
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="/" class="logo" aria-label="LeadStart home">
+            <span class="logo-mark" aria-hidden="true">
+              <img src="/assets/img/leadstart-logo.png" alt="" />
+            </span>
+            <span>LeadStart</span>
+          </a>
+          <p>Outbound lead generation and nurture, built for B2B companies ready to grow beyond referrals.</p>
+        </div>
+
+        <div>
+          <h5>Product</h5>
+          <ul>
+            <li><a href="/services.html">How It Works</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5>Get in touch</h5>
+          <a href="tel:+14252869732" class="phone-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            425-286-9732
+          </a>
+          <a href="/contact.html" class="btn btn-primary btn-sm">Book Intro Call</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> LeadStart. All rights reserved.</span>
+        <ul class="footer-bottom-links">
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script defer src="/assets/js/nav.js"></script>
+  <script defer src="/assets/js/accordion.js"></script>
+  <script defer src="/assets/js/reveal.js"></script>
+</body>
+</html>

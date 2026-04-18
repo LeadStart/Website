@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 44" fill="none" role="img" aria-label="LeadStart">
+  <defs>
+    <linearGradient id="ls-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#47A5ED"/>
+      <stop offset="100%" stop-color="#1878C8"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="4" width="36" height="36" rx="10" fill="url(#ls-grad)"/>
+  <path d="M11 14 L25 14 L11 24 L25 30 L11 30 Z" fill="#ffffff"/>
+  <text x="48" y="29" font-family="Poppins, sans-serif" font-weight="700" font-size="20" letter-spacing="-0.5" fill="#0f172a">
+    LeadStart
+  </text>
+</svg>

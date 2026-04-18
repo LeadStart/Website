@@ -1,0 +1,152 @@
+/* =========================================================================
+   LeadStart Design Tokens
+   Brand colors source: C:\Users\danie\Documents\PolishPoint\Blue\LeadStart Swatchboard.html
+   Component tokens source: C:\Users\danie\Documents\PolishPoint\Blue\theme_polishpoint_blue_swatchboard.html
+   This file is the single source of truth for design values.
+   No other CSS file should contain raw hex colors — reference variables only.
+   ========================================================================= */
+
+:root {
+  /* ------------------------------ Typography --------------------------- */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'Consolas', 'SF Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace;
+
+  /* Fluid type ramp (marketing-scale) */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  clamp(26px, 3vw, 32px);
+  --text-3xl:  clamp(32px, 4.5vw, 44px);
+  --text-4xl:  clamp(38px, 6vw, 56px);
+  --text-5xl:  clamp(44px, 7vw, 72px);
+
+  --leading-tight:  1.15;
+  --leading-snug:   1.3;
+  --leading-normal: 1.55;
+  --leading-loose:  1.7;
+
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-widest:  0.12em;
+
+  /* ------------------------------ Primary Blue ------------------------- */
+  /* Source: LeadStart Swatchboard — Blue 500 is brand primary */
+  --primary:       #2e37fe;   /* Blue 500 — brand primary */
+  --primary-light: #6b72ff;   /* Blue 400 */
+  --primary-hover: #1c24b8;   /* Blue 700 */
+  --primary-deep:  #0f1880;   /* Blue 900 */
+  --primary-soft:  #d1d3ff;   /* Blue 200 */
+  --primary-bg:    #edeeff;   /* Blue 100 */
+
+  /* Full blue tint ramp (LeadStart Swatchboard) */
+  --blue-100:      #edeeff;
+  --blue-200:      #d1d3ff;
+  --blue-300:      #a3a8ff;
+  --blue-400:      #6b72ff;
+  --blue-500:      #2e37fe;
+  --blue-700:      #1c24b8;
+  --blue-900:      #0f1880;
+  --blue-950:      #060b52;
+
+  /* ------------------------------ Accents ------------------------------ */
+  --flame:  #ff6b2e;
+  --mint:   #00d4aa;
+  --coral:  #ff3d71;
+  --sun:    #ffc42e;
+
+  /* ------------------------------ Neutrals ----------------------------- */
+  --ink:      #0d0d1a;
+  --navy:     #1a1a2e;
+  --slate:    #3d3d5c;
+  --storm:    #6b6e8a;
+  --silver:   #9194ad;
+  --mist:     #e2e3ed;
+  --cloud:    #f4f5f9;
+  --white:    #ffffff;
+
+  /* ------------------------------ Semantic text ------------------------ */
+  --text-primary: #0f172a;
+  --text-body:    #334155;
+  --text-muted:   #64748b;
+  --text-faint:   #94a3b8;
+  --text-invert:  #ffffff;
+
+  /* ------------------------------ Surfaces ----------------------------- */
+  --page-bg:      #f8fafc;
+  --surface:      #ffffff;
+  --surface-alt:  var(--primary-bg);
+  --surface-dark: #0f172a;
+  --border-light: #f1f5f9;
+  --border-mid:   #e2e8f0;
+  --border-dark:  #cbd5e1;
+
+  /* ------------------------------ Radii -------------------------------- */
+  --r-card:   20px;
+  --r-btn:    10px;
+  --r-input:  12px;
+  --r-pill:   9999px;
+  --r-sm:     6px;
+  --r-md:     12px;
+  --r-lg:     16px;
+
+  /* ------------------------------ Shadows ------------------------------ */
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.08);
+  --shadow-lg: 0 12px 28px rgba(15,23,42,0.12);
+  --shadow-xl: 0 24px 48px rgba(15,23,42,0.16);
+
+  /* Neumorphic: paired highlight + drop (copied from PolishPoint theme) */
+  --neu-shadow:        4px 4px 12px rgba(15,23,42,0.06), -2px -2px 8px rgba(255,255,255,0.9);
+  --neu-shadow-hover:  6px 6px 16px rgba(15,23,42,0.08), -3px -3px 10px rgba(255,255,255,1);
+  --neu-shadow-heavy:  6px 6px 18px rgba(15,23,42,0.10), -3px -3px 12px rgba(255,255,255,1);
+
+  /* Primary button glow recipe — based on #2e37fe (rgb 46,55,254) */
+  --btn-primary-glow:       inset 0 1px 0 rgba(255,255,255,0.25),
+                            0 0 22px rgba(46,55,254,0.35),
+                            0 4px 14px rgba(28,36,184,0.28);
+  --btn-primary-glow-hover: inset 0 1px 0 rgba(255,255,255,0.3),
+                            0 0 28px rgba(46,55,254,0.45),
+                            0 6px 18px rgba(28,36,184,0.35);
+
+  /* ------------------------------ Gradients ---------------------------- */
+  --btn-primary-grad:       linear-gradient(135deg, #6b72ff 0%, #1c24b8 100%);
+  --btn-primary-grad-hover: linear-gradient(135deg, #2e37fe 0%, #0f1880 100%);
+  --card-grad:              linear-gradient(180deg, var(--primary-bg) 0%, #ffffff 60%);
+  --stat-grad:              linear-gradient(180deg, var(--primary-soft) 0%, var(--primary-bg) 100%);
+  --cta-band-grad:          linear-gradient(135deg, #0f1880 0%, #2e37fe 50%, #6b72ff 100%);
+  --text-grad:              linear-gradient(135deg, #2e37fe 0%, #0f1880 100%);
+
+  /* Aurora ambient (applied to body or hero) — tinted with brand blue #2e37fe */
+  --aurora-bg:
+    radial-gradient(ellipse 60% 40% at 18% 30%, rgba(107,114,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 35% at 82% 22%, rgba(46,55,254,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 45% at 50% 90%, rgba(107,114,255,0.10) 0%, transparent 55%);
+
+  /* ------------------------------ Layout ------------------------------- */
+  --container-max:    1200px;
+  --container-narrow: 880px;
+  --container-wide:   1360px;
+  --gutter:           clamp(16px, 4vw, 40px);
+  --section-py:       clamp(64px, 10vw, 120px);
+  --section-py-sm:    clamp(40px, 6vw, 72px);
+  --header-h:         72px;
+
+  /* ------------------------------ Motion ------------------------------- */
+  --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:  cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:   cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:  0.15s;
+  --dur:       0.25s;
+  --dur-slow:  0.45s;
+
+  /* ------------------------------ Z-Index ------------------------------ */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-header:  50;
+  --z-overlay: 90;
+  --z-modal:   100;
+}

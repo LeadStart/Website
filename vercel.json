@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/app", "destination": "https://leadstart-ebon.vercel.app/app" },
+    { "source": "/app/:path*", "destination": "https://leadstart-ebon.vercel.app/app/:path*" }
+  ]
+}
