@@ -401,11 +401,25 @@
 
 .nav-cta {
   display: none;
+  border: 1px solid transparent; /* match nav-login height */
+}
+
+.nav-login {
+  display: none;
+  border: 1px solid rgba(15,24,128,0.18);
+  margin-right: 10px;
+}
+
+.nav-login:hover {
+  background: rgba(46,55,254,0.06);
+  color: var(--primary-deep);
+  border-color: rgba(15,24,128,0.35);
 }
 
 @media (min-width: 900px) {
   .nav-links { display: flex; }
   .nav-cta { display: inline-flex; }
+  .nav-login { display: inline-flex; }
 }
 
 /* Hamburger */
