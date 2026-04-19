@@ -110,6 +110,11 @@
   align-items: center;
 }
 
+.grid-split > *,
+.grid > * {
+  min-width: 0;
+}
+
 @media (min-width: 900px) {
   .grid-split {
     grid-template-columns: 1fr 1fr;
