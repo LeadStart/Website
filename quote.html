@@ -4,8 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2e37fe" />
-  <title>Page not found — LeadStart</title>
-  <meta name="description" content="The page you're looking for doesn't exist. Head back to LeadStart.io or book an intro call." />
+  <title>Get a Quote — LeadStart</title>
+  <meta name="description" content="Get a written quote tailored to your market, industry, and lead target. Same-day response from LeadStart — no sales pressure, no back-and-forth." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Get a Quote — LeadStart" />
+  <meta property="og:description" content="Same-day written quote tailored to your market, industry, and lead target." />
+  <meta property="og:url" content="https://leadstart.io/quote" />
+  <meta property="og:image" content="/assets/img/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +23,14 @@
   <link rel="stylesheet" href="/assets/css/layout.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
+
+  <style>
+    .form-footnote {
+      font-size: 12.5px;
+      color: #6b7093;
+      margin-top: 8px;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +47,7 @@
         <ul class="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/services.html">How It Works</a></li>
-          <li><a href="/quote.html">Quote</a></li>
+          <li><a href="/quote.html" class="active">Quote</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
@@ -54,7 +68,7 @@
     <ul class="mobile-drawer-links">
       <li><a href="/">Home</a></li>
       <li><a href="/services.html">How It Works</a></li>
-      <li><a href="/quote.html">Quote</a></li>
+      <li><a href="/quote.html" class="active">Quote</a></li>
       <li><a href="/about.html">About</a></li>
       <li><a href="/contact.html">Contact</a></li>
     </ul>
@@ -65,24 +79,81 @@
   </div>
 
   <main id="main">
-    <section class="error-404">
+
+    <section class="section">
       <div class="container-narrow">
-        <span class="pill-glass mb-20" data-reveal>
-          <span class="dot"></span>
-          404 — Page not found
-        </span>
-        <div class="big-num text-grad" data-reveal>404</div>
-        <h1 data-reveal data-reveal-delay="0.1s">That page doesn't exist.</h1>
-        <p class="lead" data-reveal data-reveal-delay="0.15s">The link might be outdated, or the page may have moved. Let's get you somewhere useful.</p>
-        <div class="row mt-24" data-reveal data-reveal-delay="0.2s">
-          <a href="/" class="btn btn-primary btn-lg">
-            Back to Home
+
+        <form class="card" data-reveal action="#" method="POST" novalidate>
+          <h2 class="mb-12">Request your quote.</h2>
+          <p class="mb-24 text-muted">Takes about two minutes. We'll reply with a written quote the same day.</p>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label" for="first-name">First name</label>
+              <input class="input" id="first-name" name="first-name" type="text" autocomplete="given-name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last-name">Last name</label>
+              <input class="input" id="last-name" name="last-name" type="text" autocomplete="family-name" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="company">Company</label>
+            <input class="input" id="company" name="company" type="text" autocomplete="organization" placeholder="Your company" required />
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone</label>
+              <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label" for="metro">Primary metro / service area</label>
+              <input class="input" id="metro" name="metro" type="text" placeholder="e.g., Seattle, WA" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="industry">Industry</label>
+              <input class="input" id="industry" name="industry" type="text" placeholder="e.g., HVAC, commercial roofing, law" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="volume">Monthly qualified-lead target</label>
+            <select class="select" id="volume" name="volume">
+              <option value="">Select a target</option>
+              <option value="5-10">5–10 / month</option>
+              <option value="10-15">10–15 / month</option>
+              <option value="20+">20+ / month</option>
+              <option value="unsure">Not sure yet — open to your recommendation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Anything else we should know?</label>
+            <textarea class="textarea" id="message" name="message" rows="4" placeholder="Current growth channels, service mix, specific questions..."></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-lg" type="submit" style="width:100%">
+            Get My Same-Day Quote
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/contact.html" class="btn btn-secondary btn-lg">Book Intro Call</a>
-        </div>
+          </button>
+
+          <p class="form-footnote" style="text-align:center; margin-top:14px;">
+            Requests received before 3pm PT get a response today. No spam, no lists.
+          </p>
+        </form>
+
       </div>
     </section>
+
   </main>
 
 

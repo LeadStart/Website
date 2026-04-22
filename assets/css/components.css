@@ -341,7 +341,6 @@
 }
 
 .site-header .logo-mark img,
-.site-footer .logo-mark img,
 .mobile-drawer .logo-mark img {
   width: 100%;
   height: 100%;
@@ -349,7 +348,6 @@
   pointer-events: none;
 }
 
-.site-footer .logo-mark,
 .mobile-drawer .logo-mark {
   width: 81px;
   height: 81px;
@@ -361,11 +359,6 @@
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
-}
-
-/* On the dark footer, recolor the logo to pure white so it reads cleanly */
-.site-footer .logo-mark img {
-  filter: brightness(0) invert(1);
 }
 
 .nav-links {
@@ -583,11 +576,6 @@
 }
 @media (min-width: 900px) {
   .site-footer .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.2fr; }
-}
-
-.site-footer .footer-brand .logo {
-  color: var(--text-invert);
-  margin-bottom: 16px;
 }
 
 .site-footer .footer-brand p {

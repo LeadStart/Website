@@ -30,6 +30,19 @@
   <link rel="stylesheet" href="/assets/css/layout.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
+
+  <style>
+    .quote-band { text-align: center; }
+    .quote-band .section-header { margin-bottom: 8px; }
+    .quote-band .quote-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .quote-band .guarantee-ribbon { margin-top: 40px; }
+  </style>
 </head>
 <body>
 
@@ -48,7 +61,7 @@
         <ul class="nav-links">
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/services.html">How It Works</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/quote.html">Quote</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
@@ -72,7 +85,7 @@
     <ul class="mobile-drawer-links">
       <li><a href="/" class="active">Home</a></li>
       <li><a href="/services.html">How It Works</a></li>
-      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/quote.html">Quote</a></li>
       <li><a href="/about.html">About</a></li>
       <li><a href="/contact.html">Contact</a></li>
     </ul>
@@ -286,60 +299,21 @@
     </section>
 
 
-    <!-- =============== PRICING TEASER =============== -->
-    <section class="section section-alt" id="pricing-teaser">
-      <div class="container">
+    <!-- =============== QUOTE BAND =============== -->
+    <section class="section section-alt quote-band" id="pricing-teaser">
+      <div class="container-narrow">
         <div class="section-header" data-reveal>
           <span class="eyebrow">Pricing</span>
-          <h2>Straightforward pricing. Backed by a real guarantee.</h2>
-          <p>Pick the volume that matches your capacity. One-time setup fee scales with your market size. Month-to-month — cancel whenever.</p>
+          <h2>Quotes tailored to your market.<br>Same day.</h2>
+          <p>Fixed prices don't fit real markets. We quote against your addressable base, your industry, and your scope — and you'll have it in writing the same day you ask.</p>
         </div>
 
-        <div class="pricing-grid">
-
-          <article class="price-card" data-reveal>
-            <span class="tier">Starter</span>
-            <div class="price">$500<span class="suffix">/ month</span></div>
-            <div class="leads-label">5–10 qualified leads / mo</div>
-            <ul>
-              <li>Exclusive territory</li>
-              <li>Verified prospect lists</li>
-              <li>Custom outreach copy</li>
-              <li>Automated follow-up nurture</li>
-              <li>Real-time reply routing</li>
-            </ul>
-            <a href="/contact.html" class="btn btn-secondary">Book Intro Call</a>
-          </article>
-
-          <article class="price-card featured" data-reveal data-reveal-delay="0.1s">
-            <span class="badge badge-primary featured-badge">Most Popular</span>
-            <span class="tier">Growth</span>
-            <div class="price">$950<span class="suffix">/ month</span></div>
-            <div class="leads-label">10–15 qualified leads / mo</div>
-            <ul>
-              <li>Everything in Starter</li>
-              <li>Larger sending volume</li>
-              <li>Expanded prospect list refresh</li>
-              <li>Priority reply routing</li>
-              <li>Monthly strategy check-in</li>
-            </ul>
-            <a href="/contact.html" class="btn btn-primary">Book Intro Call</a>
-          </article>
-
-          <article class="price-card" data-reveal data-reveal-delay="0.2s">
-            <span class="tier">Scale</span>
-            <div class="price">$1,500<span class="suffix">/ month</span></div>
-            <div class="leads-label">20+ qualified leads / mo</div>
-            <ul>
-              <li>Everything in Growth</li>
-              <li>Multi-sender infrastructure</li>
-              <li>Multiple market segments</li>
-              <li>Weekly performance reporting</li>
-              <li>Direct strategist access</li>
-            </ul>
-            <a href="/contact.html" class="btn btn-secondary">Book Intro Call</a>
-          </article>
-
+        <div class="quote-ctas" data-reveal data-reveal-delay="0.1s">
+          <a href="/quote.html" class="btn btn-primary btn-lg">
+            Get Your Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services.html" class="btn btn-secondary btn-lg">See How It Works</a>
         </div>
 
         <div class="guarantee-ribbon" data-reveal>
@@ -347,7 +321,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </span>
           <div>
-            <strong>Money-back guarantee.</strong> If we don't hit your agreed lead target, we refund 50% of your setup fee and work free until we do. + one-time setup fee billed separately, scaled to your market size.
+            <strong>Money-back guarantee.</strong> If we don't hit your agreed lead target, we refund 50% of your setup fee and work free until we do. Every quote is custom to your market and delivered same day.
           </div>
         </div>
       </div>
@@ -427,13 +401,13 @@
 
           <details class="faq-item" data-accordion>
             <summary>
-              What does the one-time setup fee cover?
+              How is pricing determined?
               <span class="faq-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
               </span>
             </summary>
             <div class="faq-body">
-              <p>Domain and inbox setup, deliverability warming, custom copy development, initial prospect list build, and verification. The fee scales with how large your addressable market is — the bigger your territory, the more contacts we validate up front. We price it transparently on your intro call.</p>
+              <p>We price against your market, not a fixed tier. The setup fee covers domains, inbox provisioning, deliverability warming, custom copy, and verified list build — it scales with the size of your addressable market. Monthly rate is tied to your agreed lead target. You'll have a written quote with both line items the same day you ask.</p>
             </div>
           </details>
 
@@ -493,11 +467,6 @@
       <div class="footer-grid">
 
         <div class="footer-brand">
-          <a href="/" class="logo" aria-label="LeadStart home">
-            <span class="logo-mark" aria-hidden="true">
-              <img src="/assets/img/leadstart-logo.png" alt="" />
-            </span>
-          </a>
           <p>Outbound lead generation and nurture, built for B2B companies ready to grow beyond referrals.</p>
         </div>
 
@@ -505,7 +474,7 @@
           <h5>Product</h5>
           <ul>
             <li><a href="/services.html">How It Works</a></li>
-            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/quote.html">Quote</a></li>
             <li><a href="/#faq">FAQ</a></li>
           </ul>
         </div>
@@ -532,7 +501,7 @@
         <span>&copy; <span id="year">2026</span> LeadStart. All rights reserved.</span>
         <ul class="footer-bottom-links">
           <li><a href="/services.html">Services</a></li>
-          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/quote.html">Quote</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
