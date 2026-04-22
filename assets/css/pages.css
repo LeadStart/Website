@@ -599,7 +599,18 @@ main {
 }
 
 @media (min-width: 900px) {
-  .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  .feature-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .feature-grid > .feature-card {
+    grid-column: span 2;
+  }
+  .feature-grid > .feature-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .feature-grid > .feature-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
 }
 
 .feature-card {
