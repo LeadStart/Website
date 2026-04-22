@@ -53,6 +53,7 @@
       company: (fd.get('company') || '').toString().trim(),
       email: (fd.get('email') || '').toString().trim(),
       phone: (fd.get('phone') || '').toString().trim(),
+      contactPreference: (fd.get('contact-preference') || '').toString().trim(),
       metro: (fd.get('metro') || '').toString().trim(),
       volume: (fd.get('volume') || '').toString().trim(),
       message: (fd.get('message') || '').toString().trim(),
@@ -60,6 +61,16 @@
 
     if (!payload.firstName || !payload.lastName || !payload.company || !payload.email) {
       showStatus('error', 'Please fill in your name, company, and email.');
+      return;
+    }
+
+    if (!payload.contactPreference) {
+      showStatus('error', 'Please choose how you\u2019d like us to reach out.');
+      return;
+    }
+
+    if (payload.contactPreference === 'text' && !payload.phone) {
+      showStatus('error', 'Please add a phone number so we can text you.');
       return;
     }
 
