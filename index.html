@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#2e37fe" />
   <title>LeadStart — Outbound Lead Generation for B2B Companies</title>
-  <meta name="description" content="LeadStart books qualified intro calls with your target buyers. Custom cold email, verified lists, territory exclusivity, money-back guarantee." />
+  <meta name="description" content="LeadStart books qualified intro calls with your target buyers. Custom cold email, verified lists, exclusive territory." />
   <meta name="author" content="LeadStart" />
 
   <!-- Open Graph -->
@@ -41,7 +41,6 @@
       flex-wrap: wrap;
       margin-top: 28px;
     }
-    .quote-band .guarantee-ribbon { margin-top: 40px; }
   </style>
 </head>
 <body>
@@ -67,8 +66,8 @@
         </ul>
       </nav>
 
-      <a href="/contact.html" class="btn btn-primary btn-sm nav-cta">
-        Book Intro Call
+      <a href="/quote.html" class="btn btn-primary btn-sm nav-cta">
+        Get Quote
       </a>
       <a href="/app/login" class="btn btn-secondary btn-sm nav-login">
         Log In
@@ -92,8 +91,8 @@
     <a href="/app/login" class="btn btn-secondary" style="margin-bottom:10px;">
       Log In
     </a>
-    <a href="/contact.html" class="btn btn-primary">
-      Book Intro Call
+    <a href="/quote.html" class="btn btn-primary">
+      Get Quote
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -113,7 +112,7 @@
               Fill your B2B <span class="text-grad">pipeline</span> — fast.
             </h1>
             <p class="lead">
-              Simplified lead generation and nurture. We book qualified intro calls with your target buyers — so you can focus on closing, not prospecting.
+              We book qualified intro calls with your target buyers. Every hot reply hits your phone in seconds — with the prospect's number attached — so you call while the lead is still at their desk.
             </p>
             <div class="hero-ctas">
               <a href="/contact.html" class="btn btn-primary btn-lg">
@@ -127,57 +126,69 @@
             <div class="hero-trust">
               <strong class="text-primary">Territory exclusivity</strong>
               <span class="divider-dot"></span>
-              <strong class="text-primary">Money-back guarantee</strong>
-              <span class="divider-dot"></span>
               <strong class="text-primary">Month-to-month</strong>
+              <span class="divider-dot"></span>
+              <strong class="text-primary">No commitment</strong>
             </div>
           </div>
 
-          <!-- CSS-mocked email thread visual -->
-          <div class="hero-visual" data-reveal data-reveal-delay="0.15s" aria-hidden="true">
-            <div class="mock-inbox">
-              <div class="mock-inbox-header">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <span class="label">Daniel's Inbox · Today</span>
+          <!-- Hot-lead notification animation: envelope opens, email pops out -->
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hla-stage">
+              <div class="hla-envelope">
+                <div class="hla-env-back"></div>
+                <div class="hla-env-pocket"></div>
+                <div class="hla-env-flap"></div>
+                <div class="hla-seal">!</div>
+                <div class="hla-pulse-ring"></div>
+                <div class="hla-pulse-ring hla-r2"></div>
               </div>
+              <div class="hla-mockup-slot">
+                <div class="hla-mockup-inner">
+                  <div class="hla-mockup-card">
+                    <div class="hla-toolbar">
+                      <div class="hla-dots"><span></span><span></span><span></span></div>
+                      <span class="hla-toolbar-label">Inbox · from LeadStart</span>
+                    </div>
+                    <div class="hla-mail-header">
+                      <div class="hla-subject">🔔 New hot lead reply — Maria Reyes @ Northgate</div>
+                      <div class="hla-meta">
+                        <div class="hla-avatar">LS</div>
+                        <div class="hla-meta-body">
+                          <div><strong>LeadStart</strong> &lt;info@no-reply.leadstart.io&gt;</div>
+                          <div>to you · Thu, 10:42 AM</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hla-email-bg">
+                      <div class="hla-hero-card">
+                        <p class="hla-eyebrow">🔔 Hot lead</p>
+                        <div class="hla-h1">Maria Reyes <span class="hla-dim">@ Northgate</span></div>
+                        <p class="hla-sub">A hot lead just replied. Call them now.</p>
+                      </div>
+                      <div class="hla-phone">
+                        <p class="hla-phone-label">Call now</p>
+                        <p class="hla-phone-num">📞 (425) 555-0198</p>
+                      </div>
+                      <div class="hla-reply">
+                        <p class="hla-reply-label">Their reply · Thu, 10:42 AM PT</p>
+                        <div class="hla-reply-quote">Hi — this sounds interesting. We're evaluating vendors for our downtown portfolio right now and would like to learn more about pricing and availability.
 
-              <div class="mock-thread">
-                <div class="mock-avatar">JP</div>
-                <div class="mock-thread-body">
-                  <div class="mock-thread-meta">
-                    <strong>John P.</strong>
-                    <span>VP Operations · 9:14 AM</span>
-                  </div>
-                  <div class="mock-thread-subject">Quote request — Downtown office (22k sqft)</div>
-                  <div class="mock-thread-snippet">Happy to connect next week. Can you send availability…</div>
-                </div>
-                <span class="mock-thread-status reply">Reply</span>
-              </div>
+Can we set up a call this week? Thursday or Friday afternoon works best for me.
 
-              <div class="mock-thread highlight">
-                <div class="mock-avatar alt-2">MR</div>
-                <div class="mock-thread-body">
-                  <div class="mock-thread-meta">
-                    <strong>Maria R.</strong>
-                    <span>Property Manager · 10:42 AM</span>
+Thanks,
+Maria</div>
+                      </div>
+                      <div class="hla-cta-wrap">
+                        <a href="#" class="hla-cta">View Full Reply →</a>
+                      </div>
+                    </div>
+                    <div class="hla-footer">
+                      <p class="hla-footer-line">Sent by <strong>LeadStart</strong> · Cold email done right</p>
+                      <p class="hla-footer-fine">You're receiving this because your campaign flagged a hot reply.</p>
+                    </div>
                   </div>
-                  <div class="mock-thread-subject">Re: Interested in bringing your team in</div>
-                  <div class="mock-thread-snippet">We're open to switching. Walkthrough Thursday at 2pm?</div>
                 </div>
-                <span class="mock-thread-status booked">Booked</span>
-              </div>
-
-              <div class="mock-thread">
-                <div class="mock-avatar alt">DK</div>
-                <div class="mock-thread-body">
-                  <div class="mock-thread-meta">
-                    <strong>Derek K.</strong>
-                    <span>Office Mgr · 11:08 AM</span>
-                  </div>
-                  <div class="mock-thread-subject">Interested — send a proposal please</div>
-                  <div class="mock-thread-snippet">Our current provider isn't meeting expectations…</div>
-                </div>
-                <span class="mock-thread-status sent">Sent</span>
               </div>
             </div>
           </div>
@@ -211,11 +222,11 @@
           <article class="card process-card" data-reveal data-reveal-delay="0.1s">
             <div class="step-number">2</div>
             <h3>Outreach</h3>
-            <p>Multi-step sequences reach decision-makers across your exclusive territory. Every reply is routed to you in real time with the full context you need to close.</p>
+            <p>Multi-step sequences reach decision-makers across your exclusive territory. Every reply is classified on arrival — hot ones ping your phone in seconds with the prospect's number ready to tap.</p>
             <ul class="check-list">
               <li>Targeted decision makers in your ideal accounts</li>
               <li>Personalized — no spam blasts, no templates</li>
-              <li>Replies forwarded to your inbox instantly</li>
+              <li>Hot replies dispatched to your phone, prospect's number attached</li>
             </ul>
           </article>
 
@@ -241,7 +252,7 @@
         <div class="section-header" data-reveal>
           <span class="eyebrow">Why LeadStart</span>
           <h2>Built specifically for B2B outbound.</h2>
-          <p>Everything that matters for B2B outbound — territory protection, verified data, human-written copy, and a guarantee that actually has teeth.</p>
+          <p>Everything that matters for B2B outbound — territory protection, verified data, human-written copy, and speed-to-lead when hot replies land.</p>
         </div>
 
         <div class="feature-grid">
@@ -274,24 +285,16 @@
             <div class="icon-chip" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
-            <h4>Real-time routing</h4>
-            <p>Replies hit your inbox the moment they land, with the full thread and context attached. You respond while the lead is still warm — not a week later.</p>
+            <h4>Call in minutes, not days</h4>
+            <p>Every inbound reply is classified on arrival. Hot ones ping your phone in seconds with the prospect's number ready to tap — so you call while the lead is still at their desk.</p>
           </article>
 
           <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.2s">
             <div class="icon-chip" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-            </div>
-            <h4>Money-back guarantee</h4>
-            <p>If we don't hit our agreed lead target, we refund 50% of your setup fee and work free until we do. Skin in the game — on both sides.</p>
-          </article>
-
-          <article class="card card-hover feature-card" data-reveal data-reveal-delay="0.25s">
-            <div class="icon-chip" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             </div>
             <h4>Done-for-you</h4>
-            <p>You don't touch the tech. We handle domains, inboxes, sequences, deliverability, follow-ups — everything. Your only job is replying to warm leads.</p>
+            <p>You don't touch the tech. We handle domains, inboxes, sequences, deliverability, follow-ups — everything. Your only job is taking the call when a hot lead lands.</p>
           </article>
 
         </div>
@@ -316,14 +319,6 @@
           <a href="/services.html" class="btn btn-secondary btn-lg">See How It Works</a>
         </div>
 
-        <div class="guarantee-ribbon" data-reveal>
-          <span class="shield" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </span>
-          <div>
-            <strong>Money-back guarantee.</strong> If we don't hit your agreed lead target, we refund 50% of your setup fee and work free until we do. Every quote is custom to your market and delivered same day.
-          </div>
-        </div>
       </div>
     </section>
 
@@ -334,7 +329,7 @@
         <div class="section-header" data-reveal>
           <span class="eyebrow">FAQ</span>
           <h2>Questions we hear most.</h2>
-          <p>Straight answers on lead quality, guarantees, territory, and what's actually happening behind the scenes.</p>
+          <p>Straight answers on lead quality, territory, and what's actually happening behind the scenes.</p>
         </div>
 
         <div class="faq-list" data-accordion-group>
@@ -360,18 +355,6 @@
             </summary>
             <div class="faq-body">
               <p>Recycled lists get everyone nowhere. Ours are pulled fresh for your exact market and role targets, then double-verified before a single send. You own every contact outright — nothing is resold, and nothing overlaps with another client's outreach.</p>
-            </div>
-          </details>
-
-          <details class="faq-item" data-accordion>
-            <summary>
-              What happens if I don't hit my lead target?
-              <span class="faq-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-              </span>
-            </summary>
-            <div class="faq-body">
-              <p>We refund 50% of your setup fee and keep working free until you hit the agreed target. We don't grow if our clients don't grow — the guarantee forces us to pick markets and service fits we can actually deliver on.</p>
             </div>
           </details>
 
@@ -419,7 +402,7 @@
               </span>
             </summary>
             <div class="faq-body">
-              <p>Yes. Month-to-month. No annual contracts. If the campaign isn't producing, we'd rather refund you and part ways than have you locked in.</p>
+              <p>Yes. Month-to-month. No annual contracts. If the campaign isn't producing, we'd rather part ways than have you locked in.</p>
             </div>
           </details>
 
@@ -444,7 +427,7 @@
     <section class="cta-band">
       <div class="container">
         <h2 data-reveal>Ready to fill your pipeline with qualified B2B leads?</h2>
-        <p data-reveal data-reveal-delay="0.1s">Book a 20-minute intro call. We'll walk you through your territory, your numbers, and your guaranteed lead target.</p>
+        <p data-reveal data-reveal-delay="0.1s">Book a 20-minute intro call. We'll walk you through your territory, your numbers, and the lead target we can hit for your market.</p>
         <div class="row" data-reveal data-reveal-delay="0.2s">
           <a href="/contact.html" class="btn btn-on-dark btn-lg">
             Book Intro Call
