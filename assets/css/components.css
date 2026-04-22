@@ -321,8 +321,8 @@
 }
 
 .site-header .logo-mark {
-  width: 36px;
-  height: 36px;
+  width: 81px;
+  height: 81px;
   border-radius: 8px;
   background: none;
   box-shadow: none;
@@ -343,21 +343,16 @@
 .site-header .logo-mark img,
 .site-footer .logo-mark img,
 .mobile-drawer .logo-mark img {
-  position: absolute;
-  width: 82px;
-  height: 82px;
-  max-width: none;
-  top: -17px;
-  left: 49%;
-  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   pointer-events: none;
 }
 
 .site-footer .logo-mark,
 .mobile-drawer .logo-mark {
-  width: 36px;
-  height: 36px;
+  width: 81px;
+  height: 81px;
   border-radius: 8px;
   background: none;
   display: inline-flex;

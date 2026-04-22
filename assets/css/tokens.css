@@ -133,7 +133,7 @@
   --gutter:           clamp(16px, 4vw, 40px);
   --section-py:       clamp(64px, 10vw, 120px);
   --section-py-sm:    clamp(40px, 6vw, 72px);
-  --header-h:         72px;
+  --header-h:         101px;
 
   /* ------------------------------ Motion ------------------------------- */
   --ease:      cubic-bezier(0.4, 0, 0.2, 1);
