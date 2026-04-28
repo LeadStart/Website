@@ -23,6 +23,97 @@
   <link rel="stylesheet" href="/assets/css/layout.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
+
+  <style>
+    /* Sourcing band: dark gradient breakup for the list-building section */
+    .sourcing-band {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(1200px 600px at 15% 0%, rgba(46,55,254,0.35), transparent 60%),
+                  radial-gradient(900px 500px at 95% 100%, rgba(46,55,254,0.28), transparent 60%),
+                  linear-gradient(180deg, #070b2e 0%, #0a0f3d 60%, #060a25 100%);
+      color: #fff;
+      padding-block: 100px !important;
+    }
+    .sourcing-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M0 .5h40M.5 0v40' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/></svg>");
+      pointer-events: none;
+    }
+    .sourcing-band .container { position: relative; z-index: 1; }
+    .sourcing-band .section-header h2 { color: #fff; }
+    .sourcing-band .section-header p { color: rgba(255,255,255,0.78); }
+    .sourcing-band .section-header .eyebrow {
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.16);
+    }
+    .sourcing-band .section-header .eyebrow .dot { background: #8a9bff; }
+
+    .sourcing-band .process-card {
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      box-shadow: none !important;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+    .sourcing-band .process-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.22) !important;
+      background: rgba(255,255,255,0.07) !important;
+    }
+    .sourcing-band .process-card h3 { color: #fff; }
+    .sourcing-band .process-card p { color: rgba(255,255,255,0.78); }
+    .sourcing-band .process-card .step-number {
+      background: linear-gradient(135deg, rgba(70,90,255,0.85), rgba(46,55,254,0.55)) !important;
+      color: #fff !important;
+      box-shadow: 0 8px 24px -8px rgba(46,55,254,0.6);
+    }
+    .sourcing-band .process-card .check-list li { color: rgba(255,255,255,0.82); }
+    .sourcing-band .process-card .check-list li::before { color: #8a9bff !important; }
+    .sourcing-band .process-card strong { color: #fff; }
+
+    .sourcing-band .process-grid::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(160,180,255,0.45) 25%, rgba(160,180,255,0.45) 75%, transparent 100%) !important;
+      opacity: 0.55;
+    }
+
+    .sourcing-band .ownership-callout {
+      margin-top: 44px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      padding: 28px 32px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(70,90,255,0.45), rgba(46,55,254,0.18));
+      border: 1px solid rgba(160,180,255,0.4);
+      box-shadow: 0 0 0 1px rgba(160,180,255,0.18) inset, 0 18px 60px -20px rgba(46,55,254,0.55);
+    }
+    .sourcing-band .ownership-callout h3 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+    .sourcing-band .ownership-callout p {
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    .sourcing-band .closer-line {
+      margin-top: 32px;
+      text-align: center;
+      color: rgba(255,255,255,0.92);
+      font-size: 17px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .sourcing-band .closer-line strong { color: #fff; }
+  </style>
 </head>
 <body>
 
@@ -131,10 +222,13 @@
 
 
     <!-- Where leads come from: layered list-building -->
-    <section class="section" id="list-building">
+    <section class="section sourcing-band" id="list-building">
       <div class="container">
         <div class="section-header" data-reveal>
-          <span class="eyebrow">Where your leads come from</span>
+          <span class="eyebrow">
+            <span class="dot"></span>
+            Where your leads come from
+          </span>
           <h2>No recycled databases. Ever.</h2>
           <p>We don't buy a list and resell it to you and your competitors. Your prospect list is built from scratch, layer by layer, until every reachable buyer in your territory is in the queue.</p>
         </div>
@@ -176,12 +270,12 @@
 
         </div>
 
-        <div class="card" data-reveal style="margin-top:40px; text-align:center; max-width:760px; margin-left:auto; margin-right:auto;">
-          <h3 style="margin-bottom:10px;">And the list is yours. Forever.</h3>
+        <div class="ownership-callout" data-reveal>
+          <h3>And the list is yours. Forever.</h3>
           <p>The day we hand you the prospect list, it belongs to you — emails, phones, LinkedIn URLs, the works. Exported on demand, anytime. No lock-in. No "rented" data. If you ever want to run outbound in-house, the full list walks with you.</p>
         </div>
 
-        <p class="lead text-center" data-reveal style="margin-top:32px;">We leave no stone unturned. If there's a way to reach a buyer in your market, we use it.</p>
+        <p class="closer-line" data-reveal><strong>We leave no stone unturned.</strong> If there's a way to reach a buyer in your market, we use it.</p>
       </div>
     </section>
 
