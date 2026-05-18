@@ -1,6 +1,7 @@
-/* contact.js — submits the contact form to the app's /api/contact endpoint
-   (proxied through the /app rewrite in vercel.json). Shows inline success
-   or error feedback without a full page reload. */
+/* contact.js — submits the quote-request form to the app's /api/contact
+   endpoint (proxied through the /app rewrite in vercel.json). Shared by the
+   identical lead form on /quote and /contact. Shows inline success or error
+   feedback without a full page reload. */
 (function () {
   'use strict';
 
@@ -53,24 +54,14 @@
       company: (fd.get('company') || '').toString().trim(),
       email: (fd.get('email') || '').toString().trim(),
       phone: (fd.get('phone') || '').toString().trim(),
-      contactPreference: (fd.get('contact-preference') || '').toString().trim(),
       metro: (fd.get('metro') || '').toString().trim(),
+      industry: (fd.get('industry') || '').toString().trim(),
       volume: (fd.get('volume') || '').toString().trim(),
       message: (fd.get('message') || '').toString().trim(),
     };
 
     if (!payload.firstName || !payload.lastName || !payload.company || !payload.email) {
       showStatus('error', 'Please fill in your name, company, and email.');
-      return;
-    }
-
-    if (!payload.contactPreference) {
-      showStatus('error', 'Please choose how you\u2019d like us to reach out.');
-      return;
-    }
-
-    if (payload.contactPreference === 'text' && !payload.phone) {
-      showStatus('error', 'Please add a phone number so we can text you.');
       return;
     }
 
@@ -92,7 +83,7 @@
       form.reset();
       showStatus(
         'success',
-        "Thanks — we got it. We'll be in touch within a few hours to set up a time.",
+        "Thanks — we got it. We'll reply with your written quote the same day.",
       );
     } catch (err) {
       showStatus('error', 'Network error. Please check your connection and try again.');
