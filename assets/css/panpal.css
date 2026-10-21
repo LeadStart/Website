@@ -1,0 +1,587 @@
+/* =========================================================================
+   panpal.css — Pan Pal, the buddy you drag around and chat with (MOCKUP)
+   Depends on: tokens.css, base.css, components.css (.btn)
+   Paired with assets/js/panpal.js, which builds every element below.
+   ========================================================================= */
+
+/* ----------------------------------------------------------------- him -- */
+.pp-buddy {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: calc(var(--z-overlay) - 10);
+  width: 92px;
+  height: 99px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: var(--r-lg);
+}
+
+.pp-buddy svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  overflow: visible;
+}
+
+.pp-buddy.dragging {
+  cursor: grabbing;
+}
+
+@media (max-width: 600px) {
+  .pp-buddy {
+    width: 74px;
+    height: 80px;
+  }
+}
+
+/* The one copy of his face the chat's avatars point at. Not display: none, which would stop its gradients painting. */
+.pp-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ------------------------------------------- a remark while he's shut -- */
+.pp-say {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: calc(var(--z-overlay) - 5);
+  max-width: 250px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  text-align: left;
+  cursor: pointer;
+  transform-origin: 100% var(--tail, 50%);
+  animation: pp-pop var(--dur-slow) cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.pp-say[data-side='left'] { transform-origin: 0 var(--tail, 50%); }
+.pp-say[data-side='top'] { transform-origin: var(--tail, 50%) 0; }
+.pp-say[data-side='bottom'] { transform-origin: var(--tail, 50%) 100%; }
+
+/* Its tail, pointing at his face. Painted over the bubble's own border (z-index -1 inside the bubble's stacking
+   context), so the two read as one shape; only the tail's two outer edges keep a border. */
+.pp-say::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 12px;
+  height: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  transform: rotate(45deg);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.pp-say[data-side='right']::after { right: -7px; top: calc(var(--tail) - 6px); border-left-color: transparent; border-bottom-color: transparent; }
+.pp-say[data-side='left']::after { left: -7px; top: calc(var(--tail) - 6px); border-top-color: transparent; border-right-color: transparent; }
+.pp-say[data-side='top']::after { top: -7px; left: calc(var(--tail) - 6px); border-right-color: transparent; border-bottom-color: transparent; }
+.pp-say[data-side='bottom']::after { bottom: -7px; left: calc(var(--tail) - 6px); border-top-color: transparent; border-left-color: transparent; }
+
+.pp-say[hidden] {
+  display: none;
+}
+
+.pp-say:hover,
+.pp-say:hover::after {
+  border-color: var(--primary-soft);
+}
+
+.pp-say[data-side='right']:hover::after { border-left-color: transparent; border-bottom-color: transparent; }
+.pp-say[data-side='left']:hover::after { border-top-color: transparent; border-right-color: transparent; }
+.pp-say[data-side='top']:hover::after { border-right-color: transparent; border-bottom-color: transparent; }
+.pp-say[data-side='bottom']:hover::after { border-top-color: transparent; border-left-color: transparent; }
+
+/* ------------------------------------------------------- his bubble -- */
+.pp-bubble {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: calc(var(--z-overlay) - 5);
+  width: min(360px, calc(100vw - 16px));
+  height: min(540px, calc(100vh - 16px));
+  transform-origin: 0 var(--tail, 50%);
+  /* Opening grows out of him and fades in; closing goes back the same way, a little quicker. */
+  transition: opacity 0.16s ease-in, transform 0.16s ease-in;
+}
+
+.pp-bubble:not(.closed) {
+  transition: opacity 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pp-bubble.stack {
+  width: min(420px, calc(100vw - 16px));
+}
+
+.pp-bubble[data-side='right'] { transform-origin: 100% var(--tail, 50%); }
+.pp-bubble[data-side='top'] { transform-origin: var(--tail, 50%) 0; }
+.pp-bubble[data-side='bottom'] { transform-origin: var(--tail, 50%) 100%; }
+
+.pp-bubble.closed {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.pp-bubble.gone {
+  visibility: hidden;
+}
+
+/* The tail sits behind the card, so only its point shows. */
+.pp-tail {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  box-shadow: var(--shadow-md);
+  transform: rotate(45deg);
+}
+
+.pp-bubble[data-side='left'] .pp-tail { left: -7px; top: calc(var(--tail) - 8px); }
+.pp-bubble[data-side='right'] .pp-tail { right: -7px; top: calc(var(--tail) - 8px); }
+.pp-bubble[data-side='top'] .pp-tail { top: -7px; left: calc(var(--tail) - 8px); }
+.pp-bubble[data-side='bottom'] .pp-tail { bottom: -7px; left: calc(var(--tail) - 8px); }
+
+.pp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-xl), var(--shadow-md);
+}
+
+.pp-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.pp-avatar {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--primary-soft);
+}
+
+.pp-avatar svg,
+.pp-mini {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.pp-who {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: var(--leading-snug);
+}
+
+.pp-who strong {
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.pp-who span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.pp-who span::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.pp-close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.pp-close:hover {
+  background: var(--cloud);
+  color: var(--text-primary);
+}
+
+.pp-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Back, for the chat as its own screen on a phone. */
+.pp-back {
+  display: none;
+}
+
+/* ----------------------------------------------------------- the chat -- */
+.pp-log {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding: 16px 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.pp-intro {
+  margin: 0 0 4px;
+  color: var(--text-faint);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+/* Pan Pal's lines are plain text beside his face; the visitor's are flat bubbles on the right, one fill from the
+   site's own blues with no gradient or shadow (Daniel's phone chat rule, kept on every screen). */
+.pp-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.pp-msg.bot { align-self: flex-start; }
+.pp-msg.me { align-self: flex-end; }
+
+.pp-msg .pp-mini {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.pp-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pp-text {
+  font-size: 14px;
+  line-height: var(--leading-normal);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.pp-msg.bot .pp-text {
+  padding-top: 2px;
+  color: var(--text-body);
+}
+
+.pp-msg.me .pp-text {
+  padding: 9px 13px;
+  border-radius: 16px;
+  border-bottom-right-radius: 6px;
+  background: var(--primary-bg);
+  color: var(--text-primary);
+}
+
+.pp-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pp-link {
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.pp-link:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.pp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 34px;
+}
+
+.pp-chip {
+  padding: 7px 12px;
+  border: 1px solid var(--primary-soft);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  text-align: left;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.pp-chip:hover {
+  border-color: var(--blue-300);
+  background: var(--primary-bg);
+}
+
+/* Thinking is a line of dots and the word, not a bubble. */
+.pp-thinking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 34px;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.pp-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.pp-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--silver);
+  animation: pp-dot 1s var(--ease) infinite;
+}
+
+.pp-dots i:nth-child(2) { animation-delay: 0.15s; }
+.pp-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+/* A new line fades in where its room already is. */
+.pp-msg.fresh,
+.pp-chips.fresh {
+  animation: pp-fade 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ------------------------------------------------------- the message box -- */
+.pp-compose {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 10px 12px 6px;
+  border-top: 1px solid var(--border-light);
+}
+
+.pp-compose textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 150px;
+  padding: 10px 12px;
+  resize: none;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-input);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.pp-compose textarea::placeholder {
+  color: var(--text-faint);
+}
+
+.pp-compose textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-bg);
+}
+
+/* 16px stops iOS zooming the page in when the box takes the cursor. */
+@media (pointer: coarse) {
+  .pp-compose textarea { font-size: 16px; }
+}
+
+.pp-send {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--btn-primary-grad);
+  box-shadow: var(--btn-primary-glow);
+  color: var(--text-invert);
+  transition: background var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.pp-send:hover {
+  background: var(--btn-primary-grad-hover);
+  box-shadow: var(--btn-primary-glow-hover);
+}
+
+.pp-send svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --------------------------------------------- the chat as its own screen -- */
+/* On a phone (600px wide or less) the chat takes the whole screen over the page, laid out like the Claude app in
+   LeadStart's own colours (Daniel's phone chat rule): a top bar with Back, his face, his name and one line of status;
+   only the conversation scrolls; the message box is pinned at the foot and rides the keyboard. panpal.js sets --kb
+   (how much of the screen the keyboard covers) and its timing, and grows the screen out of Pan Pal. Held sideways, the
+   conversation and the box keep to a readable centred column. */
+.pp-bubble.full {
+  top: var(--vv-top, 0px) !important;
+  left: 0 !important;
+  z-index: calc(var(--z-modal) + 10);
+  width: 100%;
+  height: var(--screen-h, 100vh) !important;
+  transform-origin: 0 0;
+  transition: none;
+}
+
+.pp-bubble.full.closed {
+  transform: none;
+}
+
+.pp-bubble.full .pp-tail,
+.pp-bubble.full .pp-close {
+  display: none;
+}
+
+.pp-bubble.full .pp-card {
+  padding-bottom: var(--kb, 0px);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pp-bubble.full .pp-head {
+  gap: 10px;
+  padding: calc(env(safe-area-inset-top) + 8px) max(12px, calc((100% - 720px) / 2)) 10px;
+}
+
+.pp-bubble.full .pp-avatar {
+  width: 34px;
+  height: 34px;
+}
+
+.pp-bubble.full .pp-back {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cloud);
+  color: var(--text-primary);
+}
+
+.pp-back svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pp-bubble.full .pp-log {
+  padding: 16px max(16px, calc((100% - 720px) / 2));
+}
+
+/* The text sits on top, one line tall and growing to about six lines; send sits under it on the right. The home
+   bar's room under the box goes as the keyboard comes up. */
+.pp-bubble.full .pp-compose {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 8px max(12px, calc((100% - 720px) / 2)) max(8px, calc(env(safe-area-inset-bottom) + 8px - var(--kb, 0px)));
+}
+
+.pp-bubble.full .pp-compose textarea {
+  grid-column: 1 / -1;
+  font-size: 16px;
+}
+
+.pp-bubble.full .pp-send {
+  grid-column: 2;
+  width: 36px;
+  height: 36px;
+}
+
+/* The page behind the chat screen stays still. */
+html.pp-locked,
+html.pp-locked body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* -------------------------------------------------- focus after a press -- */
+/* Shift or Caps Lock alone never lights up what was pressed; Tab still shows where you are. */
+:root[data-focus='press'] .pp-buddy:focus-visible,
+:root[data-focus='press'] .pp-say:focus-visible,
+:root[data-focus='press'] .pp-bubble :focus-visible:not(textarea) {
+  outline: none;
+}
+
+/* ---------------------------------------------------------------- motion -- */
+@keyframes pp-pop {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pp-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pp-dot {
+  0%, 60%, 100% { opacity: 0.35; transform: none; }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-bubble,
+  .pp-say,
+  .pp-dots i,
+  .fresh {
+    animation: none;
+    transition: none;
+  }
+}
