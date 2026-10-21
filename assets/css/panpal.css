@@ -493,7 +493,12 @@
   box-shadow: none;
 }
 
+/* The top bar and the box are opaque and above the conversation, whose lines slide under them as the keyboard comes
+   and goes. */
 .pp-bubble.full .pp-head {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
   gap: 10px;
   padding: calc(env(safe-area-inset-top) + 8px) max(12px, calc((100% - 720px) / 2)) 10px;
 }
@@ -528,6 +533,9 @@
 /* The text sits on top, one line tall and growing to about six lines; send sits under it on the right. The home
    bar's room under the box goes as the keyboard comes up. */
 .pp-bubble.full .pp-compose {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 8px;

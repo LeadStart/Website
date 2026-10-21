@@ -740,11 +740,9 @@
 
   // ---------- the keyboard, on a phone ----------
   // The chat screen rides the keyboard and nothing else moves (Daniel's phone chat rule). The tap itself puts the cursor
-  // in the box (preventScroll, so iOS doesn't slide the page to show it). The screen's foot glides up on the keyboard's
-  // own curve and clock the moment the box has the cursor, sized for the keyboard's last height on this kind of screen
-  // (iOS reports the keyboard only once it has risen), and iOS's report only corrects it. While the keyboard stays up,
-  // the most it has covered holds, since iOS sometimes reports a height without the form bar above it. The foot is the
-  // --kb length, glided by foot() below.
+  // in the box (preventScroll, so iOS doesn't slide the page to show it). The box and the conversation glide on the
+  // keyboard's own curve, started with the keyboard. While the keyboard stays up, the most it has covered holds, since
+  // iOS sometimes reports a height without the form bar above it.
   const vv = window.visualViewport
   const KB = 'leadstart.panpalKb'
   let kbUp = false
@@ -766,54 +764,147 @@
       // not kept: the next open guesses again
     }
   }
-  // Motion that goes with the keyboard, the method of Forge's lib/kbMotion.ts: iOS holds the page's drawing for about
-  // 140 to 170ms as the keyboard comes or goes, and starts the keyboard with the first frame it draws after that, so a
-  // glide started at the tap ran most of its way unseen and jumped (measured frame by frame in the iOS 27 simulator).
-  // It's held at its start, played on the second frame, and played again from 40ms in on the first frame drawn after
-  // a hold in drawing (a gap over 50ms between frames) within its first 400ms: then it moves with the keyboard.
-  const withKeyboard = (anim) => {
-    anim.pause()
-    const begin = performance.now()
-    let frames = 0
-    let last = begin
-    let again = false
+  // The keyboard's own curve, measured frame by frame in Safari on the iOS 27 simulator: a critically damped spring,
+  // 1 - (1 + wt)e^-wt, about half way in 55ms and settled by 300ms (w = 28 a second rising, 34 going down). The box
+  // glides on the same curve, so it rides the keyboard rather than leading or trailing it.
+  const KB_MS = 300
+  const spring = (w) =>
+    Array.from({ length: 25 }, (_, i) => {
+      const t = (i / 24) * (KB_MS / 1000)
+      return i === 24 ? 1 : 1 - (1 + w * t) * Math.exp(-w * t)
+    })
+  const RISE = spring(28)
+  const FALL = spring(34)
+  const slide = (node, a, b, curve, delay) =>
+    node.animate(
+      curve.map((p, i) => ({ offset: i / 24, transform: `translateY(${a + (b - a) * p}px)` })),
+      { duration: KB_MS, delay, fill: 'both' },
+    )
+  // The screen's foot (--kb, the keyboard's room under the box). It moves with transforms only, which iOS keeps drawing
+  // while it holds the page's own drawing: a glide of the padding itself ran smoothly in the page and showed as a jump
+  // of two frames (measured in the iOS 27 simulator). Rising, the box and the conversation slide up together, and the
+  // layout takes the room in the frame they land. Going down, the layout gives the room back at once and they slide
+  // down from where they were, so the screen stays full size and nothing under it shows. The top bar and the box are
+  // opaque and above the conversation, so its lines slide under them. The conversation moves only as far as its own
+  // scroll changes: at its end it keeps its newest line above the box; short of a screen, it stays put. A new height
+  // mid-glide (iOS's report correcting the first-time guess) turns the glide from where the box and the lines show,
+  // never from where they were headed. A glide that starts with the layout's change is handed to iOS held at its
+  // start and set going a frame later: started in the same frame, it reached the screen a frame after the layout did,
+  // and the box showed once at its end before it glided.
+  let glides = []
+  let footAt = 0
+  let heading = 0
+  const shownY = (node) => {
+    const t = getComputedStyle(node).transform
+    return t === 'none' ? 0 : new DOMMatrixReadOnly(t).m42
+  }
+  const foot = (px, delay = 0) => {
+    const to = Math.round(px)
+    if (Math.abs(to - heading) < 2) return null
+    heading = to
+    // Where the box and the conversation show now, gliding or not.
+    const from = footAt
+    const boxY = shownY(form)
+    const seen = log.scrollTop - shownY(log)
+    for (const a of glides) a.cancel()
+    glides = []
+    // How far the conversation can scroll with the new foot, laid out there for a moment (nothing draws in between):
+    // its scrollHeight never reads less than its own height, so a short conversation can't tell it otherwise.
+    bubble.style.setProperty('--kb', `${to}px`)
+    const end = Math.max(0, log.scrollHeight - log.clientHeight)
+    const s1 = atEnd ? end : Math.min(Math.max(0, seen), end)
+    // While it glides the layout keeps the more room of the two: rising, the room it had, taken when the box lands;
+    // going down, the new room at once.
+    const base = Math.min(from, to)
+    bubble.style.setProperty('--kb', `${base}px`)
+    footAt = base
+    const sb = to > base ? Math.max(0, Math.min(seen, log.scrollHeight - log.clientHeight)) : s1
+    log.scrollTop = sb
+    const land = () => {
+      bubble.style.setProperty('--kb', `${to}px`)
+      footAt = to
+      log.scrollTop = s1
+    }
+    if (still.matches) {
+      land()
+      return null
+    }
+    const curve = to > from ? RISE : FALL
+    const mine = [slide(form, boxY + base - from, base - to, curve, delay), slide(log, sb - seen, sb - s1, curve, delay)]
+    glides = mine
+    mine[0].onfinish = () => {
+      if (glides !== mine) return
+      land()
+      for (const a of mine) a.cancel()
+      glides = []
+    }
+    if (base !== from) {
+      for (const a of mine) a.pause()
+      requestAnimationFrame(() => {
+        if (glides === mine) for (const a of mine) a.play()
+      })
+    }
+    return mine
+  }
+  // When to move: with the keyboard, which iOS moves on its own clock (measured frame by frame in Safari on the iOS 27
+  // simulator, with the page's frame clock drawn on it). Rising: iOS holds the page's frames back for about 100ms after
+  // the tap (once 530ms), starts the keyboard with the first frame it lets through, and reports the new visual viewport
+  // about 20ms later. Started at the tap, the box was up half a second before that late keyboard; started at the first
+  // frame after the hold, it showed its first third in one jump. So the glide starts with the report and joins the
+  // keyboard a few frames in. A Home Screen app reports the keyboard only once it has risen, so 60ms after a hold it
+  // starts anyway. No keyboard by 1.5s (a hardware keyboard): nothing moves.
+  let pending = null
+  let watching = 0
+  const begin = () => {
+    if (pending === null) return
+    const to = pending
+    pending = null
+    foot(to)
+  }
+  const awaitKeyboard = (to) => {
+    pending = to
+    const id = ++watching
+    const since = performance.now()
+    let last = since
+    let held = 0
     const tick = (t) => {
-      if (++frames === 2) anim.play()
-      else if (frames > 2 && !again && t - last > 50 && t - begin < 400) {
-        again = true
-        anim.currentTime = 40
-      }
+      if (id !== watching || pending === null) return
+      if (!held && t - last > 50) held = t
+      if (held && t - held > 60) return begin()
       last = t
-      if (t - begin < 600) requestAnimationFrame(tick)
+      if (t - since < 1500) requestAnimationFrame(tick)
+      else pending = null
     }
     requestAnimationFrame(tick)
   }
-  // The screen's foot: the layout takes its end at once (--kb), and the card's padding glides there from where it
-  // really is, up over 240ms on CSS ease and down over 200ms on cubic-bezier(0.4, 0, 0.2, 1), the keyboard's own
-  // curves. Going down, the screen stays full size and holds the box up inside it, so the page never shows under it.
-  const card = bubble.querySelector('.pp-card')
-  let glide = null
-  const foot = (px, up) => {
-    const from = parseFloat(getComputedStyle(card).paddingBottom) || 0
-    glide?.cancel()
-    glide = null
-    bubble.style.setProperty('--kb', `${Math.round(px)}px`)
-    if (still.matches || Math.abs(px - from) < 2) return
-    glide = card.animate(
-      [{ paddingBottom: `${from}px` }, { paddingBottom: `${Math.round(px)}px` }],
-      up ? { duration: 240, easing: 'ease' } : { duration: 200, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' },
-    )
-    withKeyboard(glide)
+  // Going down: iOS starts the keyboard with the first frame the page draws after the box lets go, then holds the
+  // page's frames back, glides included, for about 50ms, and reports the new visual viewport only once the keyboard
+  // has gone. A glide begun when the box let go showed late and in one jump. When the visitor puts the keyboard away from
+  // the page (a tap on the conversation), the glide goes to iOS first, held at its start, and the box lets go three
+  // frames later, the glide's delay set so it's level with the keyboard when iOS shows the page again (57% of the way
+  // to the keyboard's 54%, measured). Put away from iOS's side (the bar's Done), the glide starts at once.
+  const LET_GO_MS = 70
+  let lettingGo = false
+  const putAway = () => {
+    if (!kbUp || lettingGo) return
+    lettingGo = true
+    pending = null
+    foot(0, LET_GO_MS)
+    requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(() => box.blur())))
   }
   function followViewport() {
     if (!full || !vv) return
     bubble.style.setProperty('--vv-top', `${vv.offsetTop}px`)
-    if (!kbUp) return
+    if (!kbUp || lettingGo) return
     const cover = innerHeight - vv.height - vv.offsetTop
     if (cover > 120 && cover > kbCover) {
       kbCover = cover
       keepKb(cover)
-      foot(cover, true)
+      if (pending === null) foot(cover)
+      else {
+        pending = cover
+        begin()
+      }
     }
   }
   vv?.addEventListener('resize', followViewport)
@@ -822,15 +913,16 @@
     if (!full) return
     kbUp = true
     kbCover = 0
-    // Up over 240ms on CSS ease, from the moment the box has the cursor; the first time, about the letters keyboard's
+    // The height iOS will report: the last one on this kind of screen, or the first time about the letters keyboard's
     // share of an iPhone screen (396 of 874).
-    foot(lastKb() || innerHeight * (kind() === 'tall' ? 0.45 : 0.55), true)
+    awaitKeyboard(lastKb() || innerHeight * (kind() === 'tall' ? 0.45 : 0.55))
   })
   box.addEventListener('blur', () => {
     if (!full) return
     kbUp = false
-    // Down over 200ms on the keyboard's own curve, in the same frame the box lets go.
-    foot(0, false)
+    pending = null
+    if (lettingGo) lettingGo = false
+    else foot(0)
   })
   box.addEventListener('touchend', (e) => {
     if (!full || document.activeElement === box) return
@@ -840,13 +932,7 @@
     box.setSelectionRange(end, end)
   })
   // A tap on the conversation puts the keyboard away, as chat apps do.
-  log.addEventListener(
-    'touchstart',
-    () => {
-      if (kbUp) box.blur()
-    },
-    { passive: true },
-  )
+  log.addEventListener('touchstart', putAway, { passive: true })
 
   // A press on his buttons (or on him) never takes the cursor out of the box; held there, Shift for a capital would
   // light the button up and the letters would go nowhere. On a phone they're left alone, so the keyboard behaves as ever.
@@ -984,7 +1070,9 @@
   })
 
   // ---------- carrying him, and a tap ----------
+  let carried = false
   me.addEventListener('pointerdown', (e) => {
+    carried = false
     if (e.button !== 0) return
     drag = { id: e.pointerId, sx: e.clientX, sy: e.clientY, x: pos.x, y: pos.y, moved: false, lx: e.clientX, lt: performance.now(), vx: 0 }
     try {
@@ -1014,23 +1102,33 @@
     if (open) place()
     kick()
   })
-  const letGo = (e, tap) => {
+  const letGo = (e) => {
     const d = drag
     if (!d || e.pointerId !== d.id) return
     drag = null
     me.classList.remove('dragging')
-    if (d.moved) {
-      spot = spotOf(pos)
-      try {
-        localStorage.setItem(SPOT, JSON.stringify(spot))
-      } catch {
-        // private mode: he still stays put until the page reloads
-      }
-      kick()
-    } else if (tap) setOpen(!open, 'press')
+    if (!d.moved) return
+    carried = true
+    spot = spotOf(pos)
+    try {
+      localStorage.setItem(SPOT, JSON.stringify(spot))
+    } catch {
+      // private mode: he still stays put until the page reloads
+    }
+    kick()
   }
-  me.addEventListener('pointerup', (e) => letGo(e, true))
-  me.addEventListener('pointercancel', (e) => letGo(e, false))
+  me.addEventListener('pointerup', letGo)
+  me.addEventListener('pointercancel', letGo)
+  // A tap opens the chat on the click that follows it, as any button does. Opened at the finger's release, the phone's
+  // chat screen was already under the finger when iOS sent that click, so whatever sat there took it: the text box
+  // (the keyboard came up) or a suggested question (sent unasked). A screen reader's press is a click too. A carry that
+  // ends over him isn't a tap.
+  me.addEventListener('click', (e) => {
+    const wasCarried = carried
+    carried = false
+    if (wasCarried && e.detail) return
+    setOpen(!open, e.detail ? 'press' : 'key')
+  })
   me.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
